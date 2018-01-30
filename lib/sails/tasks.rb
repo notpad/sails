@@ -11,7 +11,7 @@ if defined?(ActiveRecord::Base)
     end
 
     def database_configuration
-      YAML.load open(Sails.root.join('config/database.yml')).read
+      YAML.load ERB.new(File.read(Sails.root.join('config/database.yml'))).result
     end
 
     def db_dir
