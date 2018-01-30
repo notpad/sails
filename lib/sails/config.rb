@@ -15,6 +15,7 @@ module Sails
       config.i18n.default_locale = :en
       config.cache_classes = false
 
+      config.bind = '127.0.0.1'
       config.port = 4000
       config.thread_port = 4001
       config.processor = nil

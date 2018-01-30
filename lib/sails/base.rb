@@ -220,7 +220,7 @@ module Sails
 
     # Start Thrift Server with Event drive mode
     def start_non_blocking_server!
-      transport = ::Thrift::ServerSocket.new(nil, config.port)
+      transport = ::Thrift::ServerSocket.new(config.bind, config.port)
       transport_factory = ::Thrift::FramedTransportFactory.new
       protocol_factory = thrift_protocol_class.new
       processor = config.processor.new(self.service)
@@ -229,7 +229,7 @@ module Sails
       logger.info "Boot on: #{Sails.root}"
       logger.info "[#{Time.now}] Starting the Sails with NonBlocking..."
       logger.info "Protocol: #{thrift_protocol_class.name}"
-      logger.info "serve: 127.0.0.1:#{config.port}"
+      logger.info "serve: #{config.bind}:#{config.port}"
 
       begin
         @server.serve
